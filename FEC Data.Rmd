@@ -1,0 +1,28 @@
+---
+title: "FEC Data"
+author: "John Pirrmann"
+date: "October 22, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(janitor)
+library(stringr)
+```
+
+```{r}
+FEC <- read_delim("itcont.txt", delim = "|", col_names = FALSE)
+```
+
+```{r}
+X <- FEC %>%  
+  transmute(name = X8, employer = X12, state = X10, amount = X15) %>% 
+  filter(str_detect(employer, "HARVARD"))
+```
+    
+  
+
+
